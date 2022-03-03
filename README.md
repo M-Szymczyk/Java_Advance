@@ -2,7 +2,8 @@
 Prowadzący: dr inż. Tomasz Kubik
 
 [Strona kursu](http://tomasz.kubik.staff.iiar.pwr.wroc.pl/dydaktyka/Java/index.html)
-# Laboratorium 1
+# Instrukcje laboratoryjne
+## Laboratorium 1
 Napisz aplikację, która pozwoli na sprawdzania wskazanych katalogów pod kątem wystąpienia zmian w zawartych w nich plikach. 
 
 Aplikacja powinna wyliczać skrót MD5 dla każdego badanego pliku w dwóch krokach: 1. przygotowując "snapshot" bieżącej sytuacji oraz 2. weryfikując na podstawie zapamiętanego "snapshotu", czy w plikach wprowadzono jakieś zmiany.
