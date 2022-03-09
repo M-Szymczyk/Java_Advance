@@ -1,3 +1,5 @@
+package library;
+
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,26 +12,20 @@ import java.util.*;
  * Simple library to version control of files
  */
 public class Lib {
-    /**
-     * Internal class to save state od files and their names
-     */
-    static class FilesSS {
-        String fileName;
-        Status status;//0 - dodano, 1 - zmieniono, 2 - nie zmieniono, 3 - usunięto;
 
-        public FilesSS(String fileName, Status status) {
-            this.fileName = fileName;
-            this.status = status;
-        }
-    }
 
     private static Path pathToDirectory;
     private static final String baseFile = ".md5";
     private final ArrayList<FilesSS> files = new ArrayList<>();
 
+    public ArrayList<FilesSS> getFiles() {
+        return files;
+    }
+
     public static void main(String[] args) {
         Lib l = new Lib(args[0]);
-        //new Lib("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab1\\sources\\libraryModule\\target\\classes\\test");
+        //new library.Lib("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\
+        // mszymczyk_248881_java\\lab1\\sources\\libraryModule\\target\\classes\\test");
         for (FilesSS file : l.files) {
             System.out.println(file.fileName + " " + file.status);
         }
@@ -43,7 +39,7 @@ public class Lib {
      *
      * @param path to directory which need version control
      */
-    Lib(String path) {
+    public Lib(String path) {
         pathToDirectory = Paths.get(path);
         if (isFileRequireInitialization()) {
             ///there isn't lib file

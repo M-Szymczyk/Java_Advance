@@ -1,0 +1,3 @@
+module liblaryModule {
+    exports library;
+}
