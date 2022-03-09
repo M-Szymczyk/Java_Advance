@@ -1,5 +1,4 @@
 import java.io.*;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,10 +6,16 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
+/**
+ * Simple library to version control of files
+ */
 public class Lib {
+    /**
+     * Internal class to save state od files and their names
+     */
     static class FilesSS {
         String fileName;
-        Status status;//0 - dodano, 1 - zmieniono, 2 - niezmieniono, 3 - usunieto;
+        Status status;//0 - dodano, 1 - zmieniono, 2 - nie zmieniono, 3 - usunięto;
 
         public FilesSS(String fileName, Status status) {
             this.fileName = fileName;
@@ -20,76 +25,77 @@ public class Lib {
 
     private static Path pathToDirectory;
     private static final String baseFile = ".md5";
-    private ArrayList<FilesSS> files = new ArrayList<>();
+    private final ArrayList<FilesSS> files = new ArrayList<>();
 
     public static void main(String[] args) {
-        //String path = "C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab1\\sources\\libraryModule\\target\\classes\\123.txt";
-        // new Lib(args[0]);
-        new Lib("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab1\\sources\\libraryModule\\target\\classes\\test");
-//        try {
-//            System.out.println(countMD5ForFile(Paths.get(args[0])));
-//        } catch (NoSuchAlgorithmException | IOException e) {
-//            e.printStackTrace();
-//        }
+        Lib l = new Lib(args[0]);
+        //new Lib("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab1\\sources\\libraryModule\\target\\classes\\test");
+        for (FilesSS file : l.files) {
+            System.out.println(file.fileName + " " + file.status);
+        }
     }
 
+    /**
+     * Constructor of class
+     * if lib file isn't generated then file is generated, all files get add status
+     * if it's generated then new lib file if generated and then old and new version of lib file is compared files gets
+     * status dependently of their change
+     *
+     * @param path to directory which need version control
+     */
     Lib(String path) {
         pathToDirectory = Paths.get(path);
-        //jezeli nie ma pliku md5 to inicjalizujemy go i tyle
-        //jezeli jest
-        //  odczytujesz stare md5
-        //  liczysz nowe md5 i zastępujesz stare
-        //  odczytujesz nowe md5
-        //  porównujesz nowe md5 z starym md5
-        //      dla tych co są w nowym ale nie ma w starym to dodano
-        //      są w starym ale nie w nowym usunieto
-        //      są tu i tu to:
-        //          jezeli hash sie zmienil to zmieniono
-        //          jezeli nie to niezmieniono
-        // jak to zapisac dalej??
         if (isFileRequireInitialization()) {
+            ///there isn't lib file
             try {
                 generateMD5File();
+                ArrayList<String[]> MD5 = readFromFile();
+                MD5.forEach(strings -> files.add(new FilesSS(strings[0], Status.DODANO)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
+            ///there's lib file
             try {
                 ArrayList<String[]> oldMD5 = readFromFile();
                 generateMD5File();
                 ArrayList<String[]> newMd5 = readFromFile();
-                for (Iterator<String[]> i = oldMD5.iterator(); i.hasNext(); ) {
-                    String[] oldIteratorValue = i.next(); // wartość danego iteratora
+                /// compare versions of lib files
+                for (String[] oldIteratorValue : oldMD5) {
                     boolean endSearching = false;
-                    for (Iterator<String[]> i2 = newMd5.iterator(); i2.hasNext(); ) {
-                        String[] newIteratorValue = i2.next();
+                    for (String[] newIteratorValue : newMd5) {
                         if (oldIteratorValue[0].equals(newIteratorValue[0])) {
                             {
+                                ///if file is in both versions then given file could be change or nor
                                 if (oldIteratorValue[1].equals(newIteratorValue[1]))
                                     files.add(new FilesSS(oldIteratorValue[0], Status.NIEZMIENIONO));
                                 else
                                     files.add(new FilesSS(oldIteratorValue[0], Status.ZMIENIONO));
                             }
-                            i2.remove();
+
+                            newMd5.remove(newIteratorValue);
                             endSearching = true;
                             break;
                         }
                     }
+                    /// if file is only in old version then file was deleted
                     if (!endSearching)
                         files.add(new FilesSS(oldIteratorValue[0], Status.USUNIETO));
                 }
+                /// files that remain in new version then file was added
                 newMd5.forEach(strings -> files.add(new FilesSS(strings[0], Status.DODANO)));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        for (FilesSS file: files) {
-            System.out.println(file.fileName + " " + file.status);
-        }
     }
 
-    boolean isFileRequireInitialization() {
+    /**
+     * Method check if there is lib file
+     *
+     * @return false if there is
+     */
+    private boolean isFileRequireInitialization() {
         File folder = pathToDirectory.toFile();
         for (final File fileEntry : Objects.requireNonNull(folder.listFiles())) {
             if (!fileEntry.isDirectory())
@@ -99,21 +105,44 @@ public class Lib {
         return true;
     }
 
-    String countMD5ForFile(Path pathToFile) throws NoSuchAlgorithmException, IOException {
-        MessageDigest md = MessageDigest.getInstance("MD5");
-        md.update(Files.readAllBytes(pathToFile));
-        return Arrays.toString(md.digest());
+    /**
+     * Method count md5 hash of file
+     *
+     * @param pathToFile direct path to file
+     * @return hash of file
+     * @throws IOException if there is something wrong with path
+     */
+    private String countMD5ForFile(Path pathToFile) throws IOException {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            md.update(Files.readAllBytes(pathToFile));
+            return Arrays.toString(md.digest());
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    void saveToFile(String text) throws IOException {
+    /**
+     * Method save lib file
+     *
+     * @param text to save structure: filename:md5hash
+     * @throws IOException if there is problem with saving for example access rights
+     */
+    private void saveToFile(String text) throws IOException {
         BufferedWriter writer = new BufferedWriter(
                 new FileWriter(pathToDirectory.toString() + "\\" + baseFile));
         writer.write(text);
         writer.close();
     }
 
-
-    ArrayList<String[]> readFromFile() throws IOException {
+    /**
+     * Method read lib file
+     *
+     * @return array of Strings where at 0 index is filename and 1 md5 hash
+     * @throws IOException if there is problem with saving for example access rights or file don't exist
+     */
+    private ArrayList<String[]> readFromFile() throws IOException {
         File file = new File(pathToDirectory.toFile() + "//" + baseFile);
         ArrayList<String[]> text = new ArrayList<>();
         Scanner myReader = new Scanner(file);
@@ -125,27 +154,20 @@ public class Lib {
         return text;
     }
 
-    void generateMD5File() throws IOException {
+    /**
+     * Method generate lib file
+     *
+     * @throws IOException if there is problem with saving for example access rights
+     */
+    private void generateMD5File() throws IOException {
         File folder = pathToDirectory.toFile();
         StringBuilder textToSave = new StringBuilder();
         for (final File fileEntry : Objects.requireNonNull(folder.listFiles())) {
             if (!fileEntry.isDirectory() && !fileEntry.getName().equals(".md5")) {
-                try {
-                    textToSave.append(fileEntry).append(";")
-                            .append(countMD5ForFile(fileEntry.toPath())).append("\n");
-                } catch (NoSuchAlgorithmException e) {
-                    e.printStackTrace();
-                }
+                textToSave.append(fileEntry).append(";")
+                        .append(countMD5ForFile(fileEntry.toPath())).append("\n");
             }
         }
         saveToFile(textToSave.toString());
     }
-
-//    static String run2(String path) throws NoSuchAlgorithmException, IOException {
-//        MessageDigest md = MessageDigest.getInstance("MD5");
-//        try (InputStream is = Files.newInputStream(Paths.get(path));
-//            DigestInputStream dis = new DigestInputStream(is, md)) {
-//            return Arrays.toString(md.digest());
-//        }
-//    }
 }
