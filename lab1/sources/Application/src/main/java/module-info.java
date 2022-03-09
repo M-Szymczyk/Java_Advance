@@ -1,4 +1,4 @@
-module pl.edu.pwr.aplication {
+module pl.edu.pwr.application {
     requires javafx.controls;
     requires liblaryModule;
 
