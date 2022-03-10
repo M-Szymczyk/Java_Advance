@@ -16,15 +16,19 @@ import java.io.IOException;
 import java.nio.file.Paths;
 
 public class Application extends javafx.application.Application {
+    ///data of TableView
     private final ObservableList<FileString> data =
             FXCollections.observableArrayList();
+    ///Path to chosen file
     private String filePath;
-    @Override
-    public void start(Stage stage) throws IOException {
-        DirectoryChooser fileChooser = new DirectoryChooser();
 
+    @Override
+    public void start(Stage stage){
+
+        DirectoryChooser fileChooser = new DirectoryChooser();
+        /// Elements of view
         Pane pane = new Pane();
-        pane.setPrefWidth(260);
+        pane.setPrefWidth(460);
         pane.setPrefHeight(400);
 
         Button button = new Button();
@@ -43,20 +47,25 @@ public class Application extends javafx.application.Application {
         TableView<FileString> table = new TableView<>();
         table.setLayoutX(20);
         table.setLayoutY(50);
-        table.setPrefWidth(220);
+        table.setPrefWidth(420);
         table.setPrefHeight(300);
 
         TableColumn<FileString, String> fileNameColumn = new TableColumn<>("Nazwa pliku");
-        fileNameColumn.setPrefWidth(130);
+        fileNameColumn.setPrefWidth(330);
+        fileNameColumn.setResizable(false);
         fileNameColumn.setCellValueFactory(new PropertyValueFactory<>("fileName"));
         TableColumn<FileString, String> statusColumn = new TableColumn<>("Status");
-        statusColumn.setPrefWidth(90);
+        statusColumn.setPrefWidth(88);
+        statusColumn.setResizable(false);
         statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         table.setItems(data);
         table.getColumns().addAll(fileNameColumn, statusColumn);
         table.setVisible(false);
+
+        //button handlers
         button.setOnAction(event -> {
+            data.clear();
             File selectedFile = fileChooser.showDialog(stage);
             filePath = selectedFile.toPath().toString();
             Lib lib = new Lib(filePath);
@@ -82,7 +91,7 @@ public class Application extends javafx.application.Application {
 
         stage.setScene(new Scene(pane));
         stage.setTitle("Application");
-        //stage.setResizable(false);
+        stage.setResizable(false);
         stage.show();
     }
 

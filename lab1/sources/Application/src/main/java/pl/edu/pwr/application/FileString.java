@@ -2,6 +2,9 @@ package pl.edu.pwr.application;
 
 import javafx.beans.property.SimpleStringProperty;
 
+/**
+ * Class required to list factory
+ */
 public class FileString {
     private final SimpleStringProperty fileName;
     private final SimpleStringProperty status;
