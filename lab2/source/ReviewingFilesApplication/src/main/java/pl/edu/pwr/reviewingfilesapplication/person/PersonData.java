@@ -1,14 +1,13 @@
-package pl.edu.pwr;
+package pl.edu.pwr.reviewingfilesapplication.person;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
+import javafx.scene.image.Image;
 
 public class PersonData {
-    String name, surname, course, university;
-    int age;
-    BufferedImage myPicture;
+    public String name, surname, course, university;
+    public int age;
+    public Image myPicture;
 
-    public PersonData(String name, String surname, String course, String university, int age, BufferedImage myPicture) {
+    public PersonData(String name, String surname, String course, String university, int age, javafx.scene.image.Image myPicture) {
         this.name = name;
         this.surname = surname;
         this.course = course;
