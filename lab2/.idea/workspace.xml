@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="34163ed7-b6f0-442f-b4e3-742a43effa00" name="Changes" comment="implement FileLoader and some test data">
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/java/module-info.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/java/pl/edu/pwr/reviewingfilesapplication/listoffiles/ListOfFiles.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/java/pl/edu/pwr/reviewingfilesapplication/welcomeScene/FileString.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/java/pl/edu/pwr/reviewingfilesapplication/welcomeScene/WelcomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/java/pl/edu/pwr/reviewingfilesapplication/welcomeScene/WelcomeScene.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/source/ReviewingFilesApplication/src/main/resources/pl/edu/pwr/reviewingfilesapplication/hello-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab1/sources/Application/src/main/java/pl/edu/pwr/application/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1/sources/Application/src/main/java/pl/edu/pwr/application/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../lab1/sources/libraryModule/src/main/java/library/Status.java" beforeDir="false" afterPath="$PROJECT_DIR$/../lab1/sources/libraryModule/src/main/java/library/Status.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/ReviewingFilesApp/ReviewingFilesApp.iml" beforeDir="false" afterPath="$PROJECT_DIR$/source/ReviewingFilesLibrary/ReviewingFilesLibrary.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/ReviewingFilesApp/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/source/ReviewingFilesLibrary/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/ReviewingFilesApp/src/main/java/pl/edu/pwr/FileLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/ReviewingFilesLibrary/src/main/java/pl/edu/pwr/reviewingfileslibrary/FileLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/ReviewingFilesApp/src/main/java/pl/edu/pwr/PersonData.java" beforeDir="false" afterPath="$PROJECT_DIR$/source/ReviewingFilesLibrary/src/main/java/pl/edu/pwr/reviewingfileslibrary/PersonData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/source/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/source/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="26HiAC3ldSWITWwxW7MvNmNQmMr" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/source" />
+  </component>
+  <component name="RunManager">
+    <configuration name="FileLoader" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="pl.edu.pwr.FileLoader" />
+      <module name="ReviewingFilesApp" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="pl.edu.pwr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.FileLoader" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="34163ed7-b6f0-442f-b4e3-742a43effa00" name="Changes" comment="" />
+      <created>1647086766833</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1647086766833</updated>
+      <workItem from="1647086767995" duration="1332000" />
+      <workItem from="1647095447589" duration="2570000" />
+      <workItem from="1647109818182" duration="79000" />
+      <workItem from="1647186091856" duration="20000" />
+    </task>
+    <task id="LOCAL-00001" summary="add gitignore">
+      <created>1647097287644</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1647097287644</updated>
+    </task>
+    <task id="LOCAL-00002" summary="add gitignore">
+      <created>1647097356883</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647097356883</updated>
+    </task>
+    <task id="LOCAL-00003" summary="implement FileLoader and some test data">
+      <created>1647097395359</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1647097395359</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="add gitignore" />
+    <MESSAGE value="implement FileLoader and some test data" />
+    <option name="LAST_COMMIT_MESSAGE" value="implement FileLoader and some test data" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/source/ReviewingFilesApp/src/main/java/pl/edu/pwr/FileLoader.java</url>
+          <line>38</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
