@@ -10,19 +10,16 @@ public enum Status {
 
     @Override
     public String toString() {
+        //return status.toString();
         switch (status) {
             case 0:
                 return "Dodano";
-
             case 1:
                 return "Zmieniono";
-
             case 2:
                 return "Nie zmieniono";
-
             case 3:
                 return "Usunięto";
-
             default:
                 return "---";
         }
