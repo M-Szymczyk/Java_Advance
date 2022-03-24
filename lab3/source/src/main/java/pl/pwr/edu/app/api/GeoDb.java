@@ -19,6 +19,13 @@ public class GeoDb {
 
     }
 
+    /**
+     * @param countryId for which will be number of regions download
+     * @return number of regions for given country
+     * @throws IOException          if there is a problem with connection
+     * @throws InterruptedException if there is a problem with request
+     * @throws ParseException       if there is problem with parser
+     */
     public int getNoRegions(String countryId) throws IOException, InterruptedException, ParseException {
         Thread.sleep(2000);
         request = HttpRequest.newBuilder()
@@ -32,6 +39,12 @@ public class GeoDb {
         return Integer.parseInt(((JSONObject) obj.get("data")).get("numRegions").toString());
     }
 
+    /**
+     * @return country data of random country
+     * @throws IOException          if there is a problem with connection
+     * @throws InterruptedException if there is a problem with request
+     * @throws ParseException       if there is problem with parser
+     */
     public CountryData randCountry() throws IOException, InterruptedException, ParseException {
         request = HttpRequest.newBuilder()
                 .uri(URI.create(url + "countries?offset=" + new Random().nextInt(200) + "&limit=1"))

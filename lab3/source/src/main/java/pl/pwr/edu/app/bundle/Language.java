@@ -16,6 +16,12 @@ public class Language {
         l = new Locale(language, country);
     }
 
+    /**
+     * Metod get text for question from bundle
+     *
+     * @param countryFullName requires to filling question
+     * @return full question with selected language
+     */
     public String getQuestion(String countryFullName) {
         MessageFormat mf = new MessageFormat("");
 
@@ -25,6 +31,14 @@ public class Language {
         return mf.format(arg);
     }
 
+    /**
+     * Method get text for checking answer
+     *
+     * @param countryFullName requires to filling question
+     * @param correctN        answer was correct or not
+     * @param isCorrect       correct answer
+     * @return full result
+     */
     public String getAnswer(String countryFullName, int correctN, boolean isCorrect) {
         MessageFormat platform;
         ChoiceFormat fileForm;
@@ -49,10 +63,8 @@ public class Language {
         }
         fileForm = new ChoiceFormat(fileLimits, filePart);
         Format[] testFormats = {fileForm, null, NumberFormat.getInstance()};
-
         platform = new MessageFormat(ResourceBundle.getBundle("pl.pwr.edu.app.bundle.MyBundle", l)
                 .getString(isCorrect ? "correct" : "incorrect"));
-
         platform.setLocale(l);
         platform.setFormats(testFormats);
         Object[] testArgs = {null, "", null};
@@ -63,10 +75,17 @@ public class Language {
         return platform.format(testArgs);
     }
 
-    public String getBtnRefreshText(){
+    /**
+     * @return text for refresh button
+     */
+    public String getBtnRefreshText() {
         return ResourceBundle.getBundle("pl.pwr.edu.app.bundle.MyBundle", l).getString("btnRefresh");
     }
-    public String getBtnLanguageText(){
+
+    /**
+     * @return text for change language button
+     */
+    public String getBtnLanguageText() {
         return ResourceBundle.getBundle("pl.pwr.edu.app.bundle.MyBundle", l).getString("btnLanguage");
     }
 }

@@ -20,20 +20,20 @@ import java.util.ResourceBundle;
 import java.util.prefs.Preferences;
 
 public class GuiController implements Initializable {
-    //wlasne pol    a
-    Preferences usrPref = Preferences.userRoot().node(this.getClass().getName());
-    GeoDb geoDb = new GeoDb();
-    Language language = new Language(usrPref.get("language","en"),usrPref.get("contry","EN"));
-    int goodAnswerIndex, goodAnswer;
-    int[] answers = new int[4];
-    CountryData countryData;
-    boolean isPolishSet=true;
-    //pola fxml
-    @FXML
-    public Label labelQuestion, labelTest;
-    @FXML
-    public Button btnAnswerA, btnAnswerC, btnAnswerB, btnAnswerD,btnRefresh,btnLanguage;
+    private final Preferences usrPref = Preferences.userRoot().node(this.getClass().getName());
+    private final GeoDb geoDb = new GeoDb();
+    private Language language = new Language(usrPref.get("language", "en"), usrPref.get("contry", "EN"));
+    private int goodAnswer;
+    private final int[] answers = new int[4];
+    private CountryData countryData;
+    private boolean isPolishSet = true;
     private boolean isCorrect;
+    //----------------------------------------------------------------------------------------------------------
+    @FXML
+    private Label labelQuestion, labelTest;
+
+    @FXML
+    private Button btnAnswerA, btnAnswerC, btnAnswerB, btnAnswerD, btnRefresh, btnLanguage;
 
 
     @Override
@@ -45,22 +45,20 @@ public class GuiController implements Initializable {
 
     private void initViewElements() {
         try {
-            //inicjalizacja wlasnych pol
-            countryData= geoDb.randCountry();
-            goodAnswerIndex = new Random().nextInt(3);
+            countryData = geoDb.randCountry();
+            int goodAnswerIndex = new Random().nextInt(3);
             goodAnswer = geoDb.getNoRegions(countryData.getCountryId());
-            //inicjalizacja odpowiedzi
+            //---------------------------------------------------------------------------------------------
             answers[goodAnswerIndex] = goodAnswer;
             for (int i = 0; i < 4; i++) {
                 if (answers[i] == goodAnswer) {
                     answers[i] = goodAnswer;
                 } else {
                     ArrayList<Integer> list = new ArrayList<>();
-                    if(goodAnswer==0){
+                    if (goodAnswer == 0) {
                         for (int ran = 1; ran < 15; ran++)
                             list.add(ran);
-                    }
-                 else {
+                    } else {
                         for (int ran = goodAnswer - new Random().nextInt(goodAnswer); ran < goodAnswer * 2; ran++)
                             list.add(ran == goodAnswer ? ran - 1 : ran);
                     }
@@ -68,11 +66,11 @@ public class GuiController implements Initializable {
                     answers[i] = list.get(i);
                 }
             }
-            //inicjalizacja FXML
+            //-----------------------------------------------------------------------------------------------
             labelQuestion.setText(language.getQuestion(countryData.getCountryName()));
             labelTest.setText("");
-            //inicjalizacja przyciskow
-            for (int i =0;i<4;i++) {
+            //--------------------------------------------------------------------------------------------
+            for (int i = 0; i < 4; i++) {
                 switch (i) {
                     case 0:
                         btnAnswerA.setText(String.valueOf(answers[i]));
@@ -88,44 +86,57 @@ public class GuiController implements Initializable {
                         break;
                 }
             }
-
         } catch (IOException | ParseException | InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public void isAnswerCorrect(Event event){
-        if(Integer.parseInt(((Button)event.getSource()).getText())==goodAnswer) {
+    /**
+     * Method is on action listener for answers buttons
+     * It will check if answer is correct and change text of labelText
+     *
+     * @param event created event
+     */
+    public void isAnswerCorrect(Event event) {
+        if (Integer.parseInt(((Button) event.getSource()).getText()) == goodAnswer) {
             labelTest.setTextFill(Color.GREEN);
             isCorrect = true;
-        }
-        else {
+        } else {
             labelTest.setTextFill(Color.RED);
             isCorrect = false;
         }
-        labelTest.setText(language.getAnswer(countryData.getCountryName(),goodAnswer, isCorrect));
+        labelTest.setText(language.getAnswer(countryData.getCountryName(), goodAnswer, isCorrect));
     }
-    public void setBtnRefresh(){
+
+    /**
+     * Method is on action listener for refresh button
+     * it will get rand next country
+     */
+    public void setBtnRefresh() {
         initViewElements();
     }
-    public void setBtnLanguage(){
+
+    /**
+     * Method is on action listener for change language button
+     * it will change pref of language and reload elements of View with new language
+     */
+    public void setBtnLanguage() {
         isPolishSet = !isPolishSet;
-        if(isPolishSet){
-            language= new Language("pl","PL");
-            usrPref.put("language","pl");
-            usrPref.put("contry","PL");
-        }
-        else {
-            language= new Language("en","EN");
-            usrPref.put("language","en");
-            usrPref.put("contry","EN");
+        if (isPolishSet) {
+            language = new Language("pl", "PL");
+            usrPref.put("language", "pl");
+            usrPref.put("contry", "PL");
+        } else {
+            language = new Language("en", "EN");
+            usrPref.put("language", "en");
+            usrPref.put("contry", "EN");
         }
         //System.out.println(usrPref.get("language",null)+usrPref.get("contry",null));
         btnRefresh.setText(language.getBtnRefreshText());
         btnLanguage.setText(language.getBtnLanguageText());
         labelQuestion.setText(language.getQuestion(countryData.getCountryName()));
-        if(!labelTest.getText().equals(""))
-            labelTest.setText(language.getAnswer(countryData.getCountryName(),goodAnswer,isCorrect));
+        if (!labelTest.getText().equals(""))
+            labelTest.setText(language.getAnswer(countryData.getCountryName(), goodAnswer, isCorrect));
         //initViewElements();
     }
 }

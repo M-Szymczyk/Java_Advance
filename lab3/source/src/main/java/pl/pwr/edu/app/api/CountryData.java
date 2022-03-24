@@ -1,5 +1,8 @@
 package pl.pwr.edu.app.api;
 
+/**
+ * Class represent country Data
+ */
 public class CountryData {
     private final String countryName;
     private final String countryId;

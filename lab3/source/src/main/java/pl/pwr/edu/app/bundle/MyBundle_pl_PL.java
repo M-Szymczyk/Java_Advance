@@ -2,6 +2,10 @@ package pl.pwr.edu.app.bundle;
 
 import java.util.ListResourceBundle;
 
+
+/**
+ * Class contain text for Polish language
+ */
 public class MyBundle_pl_PL extends ListResourceBundle {
     @Override
     protected Object[][] getContents() {
@@ -13,8 +17,8 @@ public class MyBundle_pl_PL extends ListResourceBundle {
                 {"oneAdv", "istnieje jeden region administracyjny"},
                 {"twoToFour", "istnieją {2} regiony administracyjne"},
                 {"fourTo101", "istnieje {2} regionów administracyjnych"},
-                {"btnRefresh","odśwież"},
-                {"btnLanguage","zmień język"}
+                {"btnRefresh", "odśwież"},
+                {"btnLanguage", "zmień język"}
         };
     }
 }

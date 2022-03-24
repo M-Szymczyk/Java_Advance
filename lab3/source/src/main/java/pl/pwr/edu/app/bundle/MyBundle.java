@@ -2,6 +2,9 @@ package pl.pwr.edu.app.bundle;
 
 import java.util.ListResourceBundle;
 
+/**
+ * Class contain text for default language
+ */
 public class MyBundle extends ListResourceBundle {
     @Override
     protected Object[][] getContents() {
@@ -12,7 +15,7 @@ public class MyBundle extends ListResourceBundle {
                 {"noAdv", "dont exist administrative regions"},
                 {"oneAdv", "is one administrative region"},
                 {"multipleAdv", "are {2} administrative regions"},
-                {"btnRefresh","refresh"},
-                {"btnLanguage","change language"}};
+                {"btnRefresh", "refresh"},
+                {"btnLanguage", "change language"}};
     }
 }
