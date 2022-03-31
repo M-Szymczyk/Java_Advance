@@ -4,12 +4,10 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
-      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="pl.edu.pwr.classloader.HelloController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="255.0" prefWidth="580.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.edu.pwr.classloader.HelloController">
    <children>
-      <ListView fx:id="PossibleToLoadList" layoutX="40.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="PossibleToLoadList" layoutX="14.0" layoutY="49.0" onMouseClicked="#loadClass" prefHeight="200.0" prefWidth="200.0" />
       <Button fx:id="chooseFirBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#chooseDir" text="Wybierz plik" />
-      <ListView  layoutX="332.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" />
+      <ListView fx:id="LoadClassList" layoutX="220.0" layoutY="49.0" onMouseClicked="#runClass" prefHeight="200.0" prefWidth="346.0" />
    </children>
 </Pane>
