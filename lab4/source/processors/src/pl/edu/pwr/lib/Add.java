@@ -16,11 +16,6 @@ public class Add implements Processor {
         java.util.concurrent.ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while (true) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 if (simulateProcessing.getAi().get() >= 100) {
                     String[] strings = task.split(" ");
                     result = String.valueOf(Integer.parseInt(strings[0])+Integer.parseInt(strings[1]));

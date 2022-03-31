@@ -1,8 +1,5 @@
 package pl.edu.pwr.processing;
 
-import pl.edu.pwr.processing.Status;
-import pl.edu.pwr.processing.StatusListener;
-
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

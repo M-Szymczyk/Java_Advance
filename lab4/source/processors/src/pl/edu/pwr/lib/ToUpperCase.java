@@ -16,11 +16,6 @@ public class ToUpperCase implements Processor {
         java.util.concurrent.ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while (true) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 if (simulateProcessing.getAi().get() >= 100) {
                     result = task.toUpperCase();
                     System.out.println("finished");

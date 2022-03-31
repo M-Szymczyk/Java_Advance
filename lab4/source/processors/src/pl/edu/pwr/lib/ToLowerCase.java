@@ -2,6 +2,7 @@ package pl.edu.pwr.lib;
 
 import pl.edu.pwr.processing.Processor;
 import pl.edu.pwr.processing.SimulateProcessing;
+import pl.edu.pwr.processing.SomeStatusListener;
 import pl.edu.pwr.processing.StatusListener;
 
 import java.util.Locale;
@@ -17,11 +18,6 @@ public class ToLowerCase implements Processor {
         java.util.concurrent.ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while (true) {
-                try {
-                    Thread.sleep(10);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 if (simulateProcessing.getAi().get() >= 100) {
                     result = task.toLowerCase(Locale.ROOT);
                     System.out.println("finished");
@@ -43,4 +39,5 @@ public class ToLowerCase implements Processor {
     public String getResult() {
         return result;
     }
+
 }
