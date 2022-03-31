@@ -1,5 +1,12 @@
 # Programowanie w języku JAVA - techniki zaawansowane
 Prowadzący: dr inż. Tomasz Kubik
+# Spis treści
+[Laboratorium 1](#Laboratorium 1)
+[Laboratorium 2](#Laboratorium 2)
+[Laboratorium 3](#Laboratorium 3)
+[Laboratorium 4](#Laboratorium 4)
+[Laboratorium 5](#Laboratorium 5)
+
 
 [Strona kursu](http://tomasz.kubik.staff.iiar.pwr.wroc.pl/dydaktyka/Java/index.html)
 # Instrukcje laboratoryjne
