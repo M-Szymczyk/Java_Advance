@@ -1,42 +1,31 @@
 package pl.edu.pwr.lib;
 
 import pl.edu.pwr.processing.Processor;
-import pl.edu.pwr.processing.Status;
+import pl.edu.pwr.processing.SimulateProcessing;
 import pl.edu.pwr.processing.StatusListener;
 
 import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
-public class ToUpperClass implements Processor {
+public class Add implements Processor {
     String result;
     private static int taskId=0;
     @Override
     public boolean submitTask(String task, StatusListener sl) {
         taskId++;
-        AtomicInteger ai = new AtomicInteger(0);
-        ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-        executorService.scheduleAtFixedRate(
-                ()->{
-                    System.out.println("running"); // do debbugowania
-                    ai.incrementAndGet();
-                    sl.statusChanged(new Status(taskId,ai.get()));
-                },
-                1, 10, TimeUnit.MILLISECONDS);
+        SimulateProcessing simulateProcessing =  new SimulateProcessing(sl,taskId);
         java.util.concurrent.ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> {
             while (true) {
                 try {
                     Thread.sleep(10);
                 } catch (InterruptedException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
-                if (ai.get() >= 100) {
-                    result = task.toUpperCase();
+                if (simulateProcessing.getAi().get() >= 100) {
+                    String[] strings = task.split(" ");
+                    result = String.valueOf(Integer.parseInt(strings[0])+Integer.parseInt(strings[1]));
                     System.out.println("finished");
-                    executorService.shutdown();
+                    simulateProcessing.getExecutorService().shutdown();
                     executor.shutdown();
                     break;
                 }
