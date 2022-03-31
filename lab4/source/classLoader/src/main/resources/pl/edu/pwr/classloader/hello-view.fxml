@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="pl.edu.pwr.classloader.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.Pane?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0"
+      xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"  fx:controller="pl.edu.pwr.classloader.HelloController">
+   <children>
+      <ListView fx:id="PossibleToLoadList" layoutX="40.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" />
+      <Button fx:id="chooseFirBtn" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#chooseDir" text="Wybierz plik" />
+      <ListView  layoutX="332.0" layoutY="77.0" prefHeight="200.0" prefWidth="200.0" />
+   </children>
+</Pane>
