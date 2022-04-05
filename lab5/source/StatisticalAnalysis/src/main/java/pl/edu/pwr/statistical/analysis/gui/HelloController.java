@@ -1,4 +1,4 @@
-package pl.edu.pwr.statisticalanalysis;
+package pl.edu.pwr.statistical.analysis.gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

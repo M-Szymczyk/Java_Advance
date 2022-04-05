@@ -60,7 +60,7 @@
                         <!-- Default configuration for running with: mvn clean javafx:run -->
                         <id>default-cli</id>
                         <configuration>
-                            <mainClass>pl.edu.pwr.statisticalanalysis/pl.edu.pwr.statisticalanalysis.HelloApplication
+                            <mainClass>pl.edu.pwr.statistical.analysis/pl.edu.pwr.statistical.analysis.gui.HelloApplication
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
