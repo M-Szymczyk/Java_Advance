@@ -12,11 +12,6 @@ import java.util.ServiceLoader;
 public class Gui extends Application {
 
     public static void main(String[] args) {
-        ServiceLoader<AnalysisService> loader = ServiceLoader.load(AnalysisService.class);
-        System.out.println("Services loading done");
-        for (AnalysisService service : loader) {
-            System.out.println(service.getClass());
-        }
         launch(args);
     }
 
