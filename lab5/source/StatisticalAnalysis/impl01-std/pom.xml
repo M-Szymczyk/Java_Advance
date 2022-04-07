@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
+		<groupId>pl.edu.pwr</groupId>
 		<artifactId>StatisticalAnalysis</artifactId>
-		<groupId>org.example</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<artifactId>impl01-std</artifactId>
@@ -13,8 +13,8 @@
 	<properties>
         <auto-value.version>1.6.6</auto-value.version>
         <auto-factory.version>1.0-beta6</auto-factory.version>
-        <auto-service.version>1.0-rc7</auto-service.version>
-        <guice.version>4.2.0</guice.version>
+        <auto-service.version>1.0.1</auto-service.version>
+        <guice.version>5.1.0</guice.version>
     </properties>
     
 	<dependencies>
