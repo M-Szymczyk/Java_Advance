@@ -5,7 +5,7 @@ import java.time.Duration; // available since JDK 1.8
 
 /**
  * Klasa reprezentująca zamówienie wyświetlania ogłoszenia o zadanej treści
- * przez zadany czas ze wskazaniem na namiastke klienta, przez którą można
+ * przez zadany czas ze wskazaniem na namiastkę klienta, przez którą można
  * przesłać informacje o numerze zamówienia w przypadku jego przyjęcia
  *
  * @author tkubik

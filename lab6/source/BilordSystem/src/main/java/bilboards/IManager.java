@@ -14,7 +14,8 @@ import java.rmi.RemoteException;
  * Klientowi numer zamówienia wykorzystując przy tym przekazaną w zamówieniu
  * namiastke. Klient rozpoznaje, czy przyjęto zamówienie, sprawdzając wynik
  * zwracany z metody placeOrder.
- * Zamówienia natychmiast po przyjęciu trafiają na dowiązane Tablice mogące w danej chwili przyjąć ogłoszenie do wyświetlania.
+ * Zamówienia natychmiast po przyjęciu trafiają na dowiązane Tablice mogące w danej chwili przyjąć
+ * ogłoszenie do wyświetlania.
  * Jeśli w danej chwili nie ma żadnej wolnej Tablicy zamówienie nie powinno być przyjęte do realizacji.
  * Aby przekonać się o stanie tablic Menadżer wywołuje metody ich namiastek getCapacity.
  * Wystarczy, że istnieje jedna wolna tablica by przyjąć zamówienie.
@@ -52,7 +53,8 @@ public interface IManager extends Remote { // port, nazwa, GUI
 
     /**
      * Metoda służąca do składania zamówienia wyświetlania ogłoszenia (wywoływana przez Klienta)
-     * @param order - szczegóły zamówienia (wraz z tekstem ogłoszenia, czasem jego wyświetlania i namiastką klienta)
+     * @param order - szczegóły zamówienia (wraz z tekstem ogłoszenia, czasem jego wyświetlania i
+     *             namiastką klienta)
      * @return - zwraca true jeśli przyjęto zamówienie oraz false w przeciwnym wypadku
      * @throws RemoteException exception
      */

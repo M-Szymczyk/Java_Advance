@@ -6,25 +6,30 @@ import java.rmi.RemoteException;
 import java.time.Duration;
 
 /**
- * Interfejs, który powinna implementować aplikacja pełniąca rolę tablicy ogłoszeniowej (nazwijmy ją Tablica).
+ * Interfejs, który powinna implementować aplikacja pełniąca funkcję tablicy ogłoszeniowej
+ * (nazwijmy ją Tablica).
  * Aplikacja ta powinna wyświetlać cyklicznie teksty ogłoszeń dostarczane metodą addAdvertisement.
  * Za wyświetlanie tych ogłoszeń powinien odpowiadać osobny wątek.
  * Wątek powinien mieć dostęp do bufora na ogłoszenia, którego pojemność i liczbę wolnych miejsc
  * zwraca metoda getCapacity.
- * Za dodawanie ogłoszenia do bufora odpowiada metoda addAdvertisment.
- * Z chwilą pierwszego wyświetlenia ogłoszenia na tablicy powinien zacząć zliczać się czas jego wyświetlania.
+ * Za dodawanie ogłoszenia do bufora odpowiada metoda add Advertisement.
+ * Z chwilą pierwszego wyświetlenia ogłoszenia na tablicy powinien zacząć zliczać się czas jego
+ * wyświetlania.
  * Usuwanie ogłoszenia może nastąpić z dwóch powodów: i) ogłoszenie może zostać usunięte na skutek
- * wywołania metody removeAdvertisement (przez Menadżera); ii) ogłoszenie może zostać usunięte, gdy skończy się przyznany
- * mu czas wyświetlania na tablicy (przez wątek odpowiedzialny w Tablicy za cykliczne wyświetlanie testów).
+ * wywołania metody removeAdvertisement (przez Menadżera); ii) ogłoszenie może zostać usunięte,
+ * gdy skończy się przyznany mu czas wyświetlania na tablicy (przez wątek odpowiedzialny w Tablicy
+ * za cykliczne wyświetlanie testów).
  * Usuwanie ogłoszeń z bufora i ich dodawanie do bufora wiąże się z odpowiednim zarządzaniem
  * podległą strukturą danych
  * W "buforze" mogą się robić "dziury", bo ogłoszenia mogą mieć przyznany różny czas wyświetlania.
- * Należy więc wybrać odpowiednią strukturę danych, która pozwoli zapomnieć o nieregularnym występowaniu tych "dziur").
+ * Należy więc wybrać odpowiednią strukturę danych, która pozwoli zapomnieć o nieregularnym
+ * występowaniu tych "dziur").
  * Metoda start powinna dać sygnał aplikacji, że należy rozpocząć cykliczne wyświetlanie ogłoszeń.
  * Metoda stop zatrzymuje wyświetlanie ogłoszeń.
- * Metody start i stop można odpalać naprzemiennie, przy czym nie powinno to resetować zliczonych czasów wyświetlania
+ * Metody start i stop można odpalać naprzemiennie, przy czym nie powinno to resetować zliczonych
+ * czasów wyświetlania
  * poszczególnych ogłoszeń.
- * Uwaga: Tablica powininna być sparametryzowany numerem portu i hostem rejestru
+ * Uwaga: Tablica powininna być z arametryzowany numerem portu i hostem rejestru
  * rmi, w którym zarejestrowano namiastkę Menadżera, oraz nazwa, pod którą
  * zarejestrowano tę namiastkę.
  * Jest to potrzebne, by Tablica mogła dowiązać się do Menadżera.

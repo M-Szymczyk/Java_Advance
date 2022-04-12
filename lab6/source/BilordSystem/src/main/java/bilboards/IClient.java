@@ -18,7 +18,7 @@ import java.rmi.RemoteException;
  * Numery zamówień i treści ogłoszeń przyjętych przez Menadżera powinny być
  * widoczne na interfejsie Klienta. Klient powinien sam zadbać o usuwanie
  * wpisów, których okres wyświetlania zakończył się (brak synchronizacji w tym
- * względzie z menadżerem)
+ * zakresie z menadżerem)
  *
  * Uwaga: Klient powinien być sparametryzowany numerem portu i hostem rejestru
  * rmi, w którym zarejestrowano namiastkę Menadżera, oraz nazwa, pod którą
