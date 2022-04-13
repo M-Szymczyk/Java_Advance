@@ -1,4 +1,4 @@
-package pl.edu.pwr.bilbords.gui.client;
+package pl.edu.pwr.bilbords.factories;
 
 import java.io.*;
 import java.net.*;
