@@ -76,12 +76,12 @@ public class Billboard extends UnicastRemoteObject implements IBillboard, Serial
             Queue<AdvertisementText> list = new LinkedList<>(refToListOfTexts.get().values());
             while (true){
                 for (AdvertisementText advertisementText : list) {
+                    advertisementText.duration = advertisementText.duration.minus(duration);
                     if(advertisementText.duration.toMillis()<Duration.ZERO.toMillis()) {
                         list.remove(advertisementText);
                         break;
                     }
-                    Platform.runLater(() -> controller.SetLabelText(advertisementText.text+advertisementText.duration.toSeconds()));
-                    advertisementText.duration = advertisementText.duration.minus(duration);
+                    Platform.runLater(() -> controller.SetLabelText(advertisementText.text));
                     try {
                         Thread.sleep(duration.toMillis());
                     } catch (InterruptedException e) {

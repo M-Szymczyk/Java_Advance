@@ -18,13 +18,16 @@ public class Client extends UnicastRemoteObject implements IClient, Serializable
     public final Map<Integer, Order> clientOrders = new HashMap<>();
     private Order lastAddedOrder;
     public final List<Integer> listOfOrders = new ArrayList<>();
-
-    protected Client() throws RemoteException {
+    private final ClientController controller;
+    protected Client(ClientController controller) throws RemoteException {
+        super();
+        this.controller = controller;
     }
 
     @Override
     public void setOrderId(int orderId) throws RemoteException {
         clientOrders.put(orderId, lastAddedOrder);
+        controller.elementObservableList.add(new TableElement(String.valueOf(orderId),lastAddedOrder.advertText,lastAddedOrder.displayPeriod));
         listOfOrders.add(orderId);
         lastAddedOrder = null;
     }

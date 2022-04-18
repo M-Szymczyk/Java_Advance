@@ -101,7 +101,7 @@ public class ManagerController implements Initializable {
 
         result.ifPresent(name -> {
             try {
-                manager.billboardMap.get(Integer.valueOf(start.getId())).setDisplayInterval(Duration.ofMillis(Long.parseLong(name)));
+                manager.billboardMap.get(Integer.valueOf(start.getId())).setDisplayInterval(Duration.ofSeconds(Long.parseLong(name)));
             } catch (RemoteException e) {
                 e.printStackTrace();
             }

@@ -2,7 +2,9 @@ package pl.edu.pwr.bilbords.client;
 
 import bilboards.IManager;
 import javafx.application.Platform;
+import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
@@ -26,7 +28,7 @@ public class ClientController implements Initializable {
     @FXML
     public Button createOrderBtn,removeOrderBtn;
     public TableView<TableElement> tableOrders;
-    List<TableElement> list;
+    public ObservableList<TableElement> elementObservableList = FXCollections.observableArrayList();
     Registry registry;
     IManager manager;
     Client client ;
@@ -37,10 +39,14 @@ public class ClientController implements Initializable {
                     InetAddress.getLocalHost().getHostName(), Client.port,
                     new RMISSLClientSocketFactory());
             manager = (IManager) registry.lookup("HelloServer");
-            client = new Client();
+            client = new Client(this);
         } catch (RemoteException | NotBoundException | UnknownHostException e) {
             e.printStackTrace();
         }
+
+        TableColumn<TableElement,String> idCol = new TableColumn<>("id");
+        idCol.setMinWidth(30);
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
 
         TableColumn<TableElement,String> OrderTextCol = new TableColumn<>("text");
         OrderTextCol.setMinWidth(100);
@@ -49,8 +55,12 @@ public class ClientController implements Initializable {
         TableColumn<TableElement,String> lastNameCol = new TableColumn<>("dur");
         lastNameCol.setMinWidth(100);
         lastNameCol.setCellValueFactory(new PropertyValueFactory<>("dur"));
-        tableOrders.getColumns().addAll(OrderTextCol,lastNameCol);
+        tableOrders.getColumns().addAll(idCol,OrderTextCol,lastNameCol);
+            tableOrders.setItems(elementObservableList);
 
+    }
+
+    public void setId(int id){
 
     }
 
@@ -100,12 +110,14 @@ public class ClientController implements Initializable {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            tableOrders.setItems(FXCollections.observableArrayList(TableElement.convert(client.clientOrders)));
+
             System.out.println("Username=" +usernamePassword.getKey() + ", Password=" +usernamePassword.getValue() );
         });
     }
 
     public void removeOrderBtnOnAction() {
+
+        tableOrders.getSelectionModel().getSelectedItem();
         //todo
     }
 }
