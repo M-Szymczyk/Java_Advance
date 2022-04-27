@@ -2,22 +2,39 @@ package pl.pwr.edu.lab.kubik.financesmanager.db.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
+@ToString
 public class Deposit {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer depositId;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "personId")
     Person person;
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "eventId")
     Event event;
+    @OneToOne
+    @JoinColumn(name = "instalmentId")
+    Instalment instalment;
     String date;
     Integer amount, noPayment;
+
+    public Deposit() {
+    }
+
+    public Deposit(Person person, Event event, Instalment instalment, String date, Integer amount) {
+        this.instalment = instalment;
+        this.person = person;
+        this.event = event;
+        this.date = date;
+        this.amount = amount;
+    }
+
 }
