@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -37,12 +38,13 @@ public class InstalmentServiceImpl implements InstalmentService {
             reader.readLine();
             List<String[]> list = new ArrayList<>();
             reader.lines().forEach(s -> list.add(s.split(";")));
-            list.forEach(strings -> instalmentRepository.save(new Instalment(
-                    eventRepository.getEventByEventId(Integer.parseInt(strings[0])),
-                    Integer.parseInt(strings[1]),
-                    Date.valueOf(LocalDate.parse(strings[2],
-                            DateTimeFormatter.ofPattern("dd.MM.yyyy"))).toString(),
-                    Integer.parseInt(strings[3]))));
+            list.forEach(strings -> {
+                var cal = Calendar.getInstance();
+                cal.setTime(Date.valueOf(LocalDate.parse(strings[2], DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+                instalmentRepository.save(new Instalment(
+                        eventRepository.getEventByEventId(Integer.parseInt(strings[0])),
+                        Integer.parseInt(strings[1]), (int) cal.getTimeInMillis(), Integer.parseInt(strings[3])));
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

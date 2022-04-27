@@ -23,13 +23,12 @@ public class Deposit {
     @OneToOne
     @JoinColumn(name = "instalmentId")
     Instalment instalment;
-    String date;
-    Integer amount, noPayment;
+    Integer amount, noPayment,date;
 
     public Deposit() {
     }
 
-    public Deposit(Person person, Event event, Instalment instalment, String date, Integer amount) {
+    public Deposit(Person person, Event event, Instalment instalment, Integer date, Integer amount) {
         this.instalment = instalment;
         this.person = person;
         this.event = event;

@@ -17,6 +17,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -48,13 +49,17 @@ public class DepositServiceImpl implements DepositService {
             reader.readLine();
             List<String[]> list = new ArrayList<>();
             reader.lines().forEach(s -> list.add(s.split(";")));
-            list.forEach(strings -> depositRepository.save(new Deposit(
-                    personRepository.getById(Integer.parseInt(strings[2])),
-                    eventRepository.getEventByEventId(Integer.parseInt(strings[3])),
-                    instalmentRepository.getByInstalmentId(Integer.parseInt(strings[4])),
-                    Date.valueOf(LocalDate.parse(strings[0],
-                            DateTimeFormatter.ofPattern("dd.MM.yyyy"))).toString(),
-                    Integer.parseInt(strings[1]))));
+            list.forEach(strings -> {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(Date.valueOf(LocalDate.parse(strings[0],
+                        DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
+                depositRepository.save(new Deposit(
+                        personRepository.getById(Integer.parseInt(strings[2])),
+                        eventRepository.getEventByEventId(Integer.parseInt(strings[3])),
+                        instalmentRepository.getByInstalmentId(Integer.parseInt(strings[4])),
+                        (int) cal.getTimeInMillis(),
+                        Integer.parseInt(strings[1])));
+            });
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -24,6 +24,7 @@ import pl.pwr.edu.lab.kubik.financesmanager.gui.tables.PersonTable;
 
 import java.io.File;
 import java.net.URL;
+import java.util.Calendar;
 import java.util.ResourceBundle;
 
 @Component
@@ -62,6 +63,14 @@ public class GuiController implements Initializable {
         initDepositTable();
     }
 
+    private File runFileChooser() {
+        FileChooser chooser = new FileChooser();
+        File chosen = new File("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab7\\release");
+        if (chosen.exists())
+            chooser.setInitialDirectory(chosen);
+        return chooser.showOpenDialog(null);
+    }
+
     private void initEventTable() {
         TableColumn<EventTable, String> eventIdCol = new TableColumn<>("eventId");
         eventIdCol.setMinWidth(100);
@@ -78,8 +87,7 @@ public class GuiController implements Initializable {
 
         eventTable.getColumns().addAll(eventIdCol, nameCol, placeCol, dateCol);
         eventTable.setItems(eventTables);
-        eventService.getAll().forEach(event -> eventTables.add(new EventTable(event.getEventId().toString(),
-                event.getName(), event.getPlace(), event.getDate().toString())));
+        updateEventTable();
     }
 
     private void initDepositTable() {
@@ -107,12 +115,7 @@ public class GuiController implements Initializable {
         depositTable.getColumns().addAll(depositIdCol, dateCol, amountCol, personIdCol, eventIdCol,
                 installmentIdCol, noPaymentCol);
         depositTable.setItems(depositTables);
-        if (depositService.getAll() != null)
-            depositService.getAll().forEach(deposit -> depositTables.add(
-                    new DepositTable(deposit.getDepositId().toString(), deposit.getDate(), deposit.getAmount().toString(),
-                            deposit.getPerson().getPersonId().toString(), deposit.getEvent().getEventId().toString(),
-                            deposit.getInstalment().getInstalmentId().toString(),
-                            "t"/*deposit.getNoPayment().toString()*/)));
+        updateDepositTable();
     }
 
     private void initInstallmentTable() {
@@ -129,14 +132,12 @@ public class GuiController implements Initializable {
         dateCol.setMinWidth(100);
         dateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
         TableColumn<InstallmentTable, String> amountCol = new TableColumn<>("amount");
-        dateCol.setMinWidth(100);
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        amountCol.setMinWidth(100);
+        amountCol.setCellValueFactory(new PropertyValueFactory<>("amount"));
 
         instalmentTable.getColumns().addAll(installmentIdCol, eventIdCol, numberCol, dateCol, amountCol);
         instalmentTable.setItems(installmentTables);
-        instalmentService.getAll().forEach(instalment -> installmentTables.add(
-                new InstallmentTable(instalment.getInstalmentId().toString(), instalment.getEvent().getEventId().toString(),
-                        instalment.getNoInstalment().toString(), instalment.getDate(), instalment.getAmount().toString())));
+        updateInstalmentTable();
     }
 
     private void initPersonTable() {
@@ -156,14 +157,6 @@ public class GuiController implements Initializable {
                 person.getName(), person.getSurname())));
     }
 
-    private File runFileChooser() {
-        FileChooser chooser = new FileChooser();
-        File chosen = new File("C:\\Users\\Hyperbook\\Desktop\\JavaZaw\\mszymczyk_248881_java\\lab7\\release");
-        if (chosen.exists())
-            chooser.setInitialDirectory(chosen);
-        return chooser.showOpenDialog(null);
-    }
-
     public void readPersonCsvBtnOnAction() {
         personService.loadCsv(runFileChooser());
         personService.getAll().forEach(person -> personTables.add(new PersonTable(person.getPersonId().toString(),
@@ -172,24 +165,49 @@ public class GuiController implements Initializable {
 
     public void readEventCsvBtnOnAction() {
         eventService.loadCsv(runFileChooser());
-        eventService.getAll().forEach(event -> eventTables.add(new EventTable(event.getEventId().toString(),
-                event.getName(), event.getPlace(), event.getDate().toString())));
+        updateEventTable();
     }
 
     public void readInstalmentCsvBtnOnAction() {
         instalmentService.loadCsv(runFileChooser());
-        instalmentService.getAll().forEach(instalment -> installmentTables.add(
-                new InstallmentTable(instalment.getInstalmentId().toString(), instalment.getEvent().getEventId().toString(),
-                        instalment.getNoInstalment().toString(), instalment.getDate(), instalment.getAmount().toString())));
+        updateInstalmentTable();
     }
 
     public void readDepositCsvBtnOnAction() {
         depositService.loadCsv(runFileChooser());
-        depositService.getAll().forEach(deposit -> depositTables.add(
-                new DepositTable(deposit.getDepositId().toString(), deposit.getDate(), deposit.getAmount().toString(),
-                        deposit.getPerson().getPersonId().toString(), deposit.getEvent().getEventId().toString(),
-                        deposit.getInstalment().getInstalmentId().toString(),
-                        deposit.getNoPayment().toString())));
+        updateDepositTable();
+    }
+
+    private void updateEventTable() {
+        var cal = Calendar.getInstance();
+        eventService.getAll().forEach(event -> {
+            cal.setTimeInMillis(event.getDate());
+            eventTables.add(new EventTable(event.getEventId().toString(),
+                    event.getName(), event.getPlace(), cal.getTime().toString()));
+        });
+    }
+
+    private void updateInstalmentTable() {
+        var cal = Calendar.getInstance();
+        instalmentService.getAll().forEach(instalment -> {
+            cal.setTimeInMillis(instalment.getDate());
+            installmentTables.add(
+                    new InstallmentTable(instalment.getInstalmentId().toString(), instalment.getEvent().getEventId().toString(),
+                            instalment.getNoInstalment().toString(), cal.getTime().toString(), instalment.getAmount().toString()));
+            ;
+        });
+    }
+
+    private void updateDepositTable() {
+        var cal = Calendar.getInstance();
+        depositService.getAll().forEach(deposit -> {
+            cal.setTimeInMillis(deposit.getDate());
+            depositTables.add(
+                    new DepositTable(deposit.getDepositId().toString(),cal.getTime().toString() , deposit.getAmount().toString(),
+                            deposit.getPerson().getPersonId().toString(), deposit.getEvent().getEventId().toString(),
+                            deposit.getInstalment().getInstalmentId().toString(),
+                            "bd"/*deposit.getNoPayment().toString()*/));
+        });
     }
 
     public void deleteAllPersonBtnOnAction() {

@@ -17,14 +17,12 @@ public class Instalment {
     @OneToOne
     @JoinColumn(name = "eventId")
     Event event;
-    Integer noInstalment;
-    String date;
-    Integer amount;
+    Integer noInstalment,date, amount;
 
     public Instalment() {    }
 
 
-    public Instalment(Event event, Integer noInstalment, String date, Integer amount) {
+    public Instalment(Event event, Integer noInstalment, Integer date, Integer amount) {
         this.event = event;
         this.noInstalment = noInstalment;
         this.date = date;

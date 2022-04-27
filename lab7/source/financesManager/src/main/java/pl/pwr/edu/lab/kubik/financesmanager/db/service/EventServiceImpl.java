@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService {
                         DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                 calendar.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
                 eventRepository.save(new Event(strings[0], strings[1],
-                        calendar.get(Calendar.MINUTE)));
+                        (int) calendar.getTimeInMillis()));
             });
 
         } catch (IOException ex) {
