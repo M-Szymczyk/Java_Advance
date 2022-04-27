@@ -17,11 +17,12 @@ public class Event {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer eventId;
-    private String name, place, date;
+    private String name, place;
+    private Integer date;
 
     public Event() {}
 
-    public Event(String name, String place, String date) {
+    public Event(String name, String place, Integer date) {
         this.name = name;
         this.place = place;
         this.date = date;

@@ -4,10 +4,13 @@ import org.springframework.stereotype.Service;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
 
 import java.io.File;
+import java.util.List;
 
 @Service
 public interface InstalmentService {
     void addInstalment(Instalment instalment);
 
     void loadCsv(File file);
+
+    List<Instalment> getAll();
 }

@@ -5,10 +5,12 @@ import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public interface EventService {
     void addEvent(Event event);
     void loadCsv(File file);
 
+    List<Event> getAll();
 }

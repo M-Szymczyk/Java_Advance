@@ -59,4 +59,9 @@ public class DepositServiceImpl implements DepositService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Deposit> getAll() {
+        return depositRepository.findAll();
+    }
 }

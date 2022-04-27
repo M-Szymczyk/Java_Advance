@@ -47,4 +47,9 @@ public class InstalmentServiceImpl implements InstalmentService {
             e.printStackTrace();
         }
     }
+
+    @Override
+    public List<Instalment> getAll() {
+        return instalmentRepository.findAll();
+    }
 }

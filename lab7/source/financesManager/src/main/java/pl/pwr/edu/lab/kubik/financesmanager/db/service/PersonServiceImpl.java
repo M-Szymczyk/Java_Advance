@@ -35,6 +35,11 @@ public class PersonServiceImpl implements PersonService {
 
     }
 
+    @Override
+    public List<Person> getAll() {
+        return personRepository.findAll();
+    }
+
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;

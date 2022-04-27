@@ -27,31 +27,21 @@ import static javafx.application.Application.launch;
 
 @SpringBootApplication
 public class FinancesManagerApplication implements CommandLineRunner {
-    private final PersonService personService;
-    private final PersonRepository personRepository;
-    private final EventService eventService;
-    private final EventRepository eventRepository;
-    private final InstalmentService instalmentService;
-    private final InstalmentRepository instalmentRepository;
-    private final DepositService depositService;
-    private final DepositRepository depositRepository;
+    private static PersonService personService = null;
+    private static final EventService eventService = null;
+    private  static final InstalmentService instalmentService = null;
+    private static final DepositService depositService = null;
     public static void main(String[] args) {
         SpringApplication.run(FinancesManagerApplication.class, args);
     }
+
     @Autowired
-    public FinancesManagerApplication(PersonService personService, PersonRepository personRepository,
-                                      EventService eventService, EventRepository eventRepository,
-                                      InstalmentService instalmentService, InstalmentRepository instalmentRepository,
-                                      DepositService depositService, DepositRepository depositRepository) {
-        this.personService = personService;
-        this.personRepository = personRepository;
-        this.eventService = eventService;
-        this.eventRepository = eventRepository;
-        this.instalmentService = instalmentService;
-        this.instalmentRepository = instalmentRepository;
-        this.depositService = depositService;
-        this.depositRepository = depositRepository;
+    public FinancesManagerApplication(PersonService personService) {
+        FinancesManagerApplication.personService = personService;
     }
+
+
+
 
 
 //    public FinancesManagerApplication(PersonService personService, PersonRepository repository) {
@@ -64,34 +54,52 @@ public class FinancesManagerApplication implements CommandLineRunner {
 //        this.personService = personService;
 //    }
 
+
+    public static PersonService getPersonService() {
+        return personService;
+    }
+
+    public static EventService getEventService() {
+        return eventService;
+    }
+
+    public static InstalmentService getInstalmentService() {
+        return instalmentService;
+    }
+
+    public static DepositService getDepositService() {
+        return  depositService;
+    }
+
     @Override
     public void run(String... args) throws Exception {
+//        Gui.main(args);
         //Gui.main(args);
         //given
-        Person person = new Person("personTest","personSurnameTest");
-        personService.addPerson(person);
-//        //when
-//        var result = personRepository.findByName("personTest");
-//        //then
-//        for (Person person1 : result) {
-//            System.out.println(person1.toString());
+//        Person person = new Person("personTest","personSurnameTest");
+//        personService.addPerson(person);
+////        //when
+////        var result = personRepository.findByName("personTest");
+////        //then
+////        for (Person person1 : result) {
+////            System.out.println(person1.toString());
+////        }
+//        Event event = new Event("testEvent","place","yesterday");
+//        eventService.addEvent(event);
+//
+//        Instalment instalment = new Instalment(event,1,"yes",10);
+//        instalmentService.addInstalment(instalment);
+//        Deposit deposit = new Deposit(person,event,instalment,"yesterday",100);
+//        depositService.addDeposit(deposit);
+//        for (Event event1 : eventRepository.findAll()) {
+//            System.out.println(event1.toString());
 //        }
-        Event event = new Event("testEvent","place","yesterday");
-        eventService.addEvent(event);
-
-        Instalment instalment = new Instalment(event,1,"yes",10);
-        instalmentService.addInstalment(instalment);
-        Deposit deposit = new Deposit(person,event,instalment,"yesterday",100);
-        depositService.addDeposit(deposit);
-        for (Event event1 : eventRepository.findAll()) {
-            System.out.println(event1.toString());
-        }
-        for (Deposit deposit1 : depositRepository.findAll()) {
-            System.out.println(deposit1.toString());
-        }
-        for (Instalment instalment1 : instalmentRepository.findAll()) {
-            System.out.println(instalment1.toString());
-        }
+//        for (Deposit deposit1 : depositRepository.findAll()) {
+//            System.out.println(deposit1.toString());
+//        }
+//        for (Instalment instalment1 : instalmentRepository.findAll()) {
+//            System.out.println(instalment1.toString());
+//        }
     }
 }
 
