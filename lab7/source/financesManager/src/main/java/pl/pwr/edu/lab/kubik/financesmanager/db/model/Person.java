@@ -1,8 +1,8 @@
 package pl.pwr.edu.lab.kubik.financesmanager.db.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,9 +12,10 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@ToString
 public class Person {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer personId;
     private String name, surname;
 
@@ -23,5 +24,6 @@ public class Person {
         this.surname = surname;
     }
 
-    public Person() {}
+    public Person() {
+    }
 }
