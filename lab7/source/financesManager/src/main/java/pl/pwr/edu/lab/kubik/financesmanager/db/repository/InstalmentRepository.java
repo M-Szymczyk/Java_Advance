@@ -11,4 +11,7 @@ import java.util.List;
 public interface InstalmentRepository extends JpaRepository<Instalment, Integer> {
     Instalment getByInstalmentId(Integer instalmentId);
 
+    List<Instalment> getByDateEquals(Long date);
+
+    List<Instalment> getByDateBefore(Long date);
 }

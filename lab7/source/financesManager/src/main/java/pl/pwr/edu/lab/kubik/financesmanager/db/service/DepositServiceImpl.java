@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Deposit;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.DepositRepository;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.EventRepository;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.InstalmentRepository;
@@ -56,8 +58,7 @@ public class DepositServiceImpl implements DepositService {
                 depositRepository.save(new Deposit(
                         personRepository.getById(Integer.parseInt(strings[2])),
                         eventRepository.getEventByEventId(Integer.parseInt(strings[3])),
-                        instalmentRepository.getByInstalmentId(Integer.parseInt(strings[4])),
-                        (int) cal.getTimeInMillis(),
+                        instalmentRepository.getByInstalmentId(Integer.parseInt(strings[4])), cal.getTimeInMillis(),
                         Integer.parseInt(strings[1])));
             });
         } catch (IOException e) {
@@ -68,5 +69,15 @@ public class DepositServiceImpl implements DepositService {
     @Override
     public List<Deposit> getAll() {
         return depositRepository.findAll();
+    }
+
+    @Override
+    public boolean existsByRepaymentAndAndPersonID(Instalment instalment, Person person) {
+        return depositRepository.existsByInstalmentAndPerson(instalment,person);
+    }
+
+    @Override
+    public void deleteAll() {
+        depositRepository.deleteAll();
     }
 }

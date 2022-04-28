@@ -40,6 +40,16 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.findAll();
     }
 
+    @Override
+    public void deleteAll() {
+        personRepository.deleteAll();
+    }
+
+    @Override
+    public Person getByPersonId(Integer personID) {
+        return personRepository.getByPersonId(personID);
+    }
+
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;

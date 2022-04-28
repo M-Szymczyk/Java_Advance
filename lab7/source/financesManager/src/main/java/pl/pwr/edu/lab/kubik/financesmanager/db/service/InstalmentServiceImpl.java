@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.EventRepository;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.InstalmentRepository;
 
@@ -43,7 +44,7 @@ public class InstalmentServiceImpl implements InstalmentService {
                 cal.setTime(Date.valueOf(LocalDate.parse(strings[2], DateTimeFormatter.ofPattern("dd.MM.yyyy"))));
                 instalmentRepository.save(new Instalment(
                         eventRepository.getEventByEventId(Integer.parseInt(strings[0])),
-                        Integer.parseInt(strings[1]), (int) cal.getTimeInMillis(), Integer.parseInt(strings[3])));
+                        Integer.parseInt(strings[1]), cal.getTimeInMillis(), Integer.parseInt(strings[3])));
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -53,5 +54,25 @@ public class InstalmentServiceImpl implements InstalmentService {
     @Override
     public List<Instalment> getAll() {
         return instalmentRepository.findAll();
+    }
+
+    @Override
+    public List<Instalment> getAllByPaymentTimeEquals(Long valueOf) {
+        return instalmentRepository.getByDateEquals(valueOf);
+    }
+
+    @Override
+    public List<Instalment> getByDateBefore(Long date) {
+        return instalmentRepository.getByDateBefore(date);
+    }
+
+    @Override
+    public void deleteAll() {
+        instalmentRepository.deleteAll();
+    }
+
+    @Override
+    public Instalment getInstallmentById(Integer integer) {
+        return instalmentRepository.getByInstalmentId(integer);
     }
 }

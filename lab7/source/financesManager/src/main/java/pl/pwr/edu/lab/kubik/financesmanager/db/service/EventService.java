@@ -10,7 +10,12 @@ import java.util.List;
 @Service
 public interface EventService {
     void addEvent(Event event);
+
     void loadCsv(File file);
 
     List<Event> getAll();
+
+    void deleteAll();
+
+    Event getEventByEventId(Integer eventID);
 }

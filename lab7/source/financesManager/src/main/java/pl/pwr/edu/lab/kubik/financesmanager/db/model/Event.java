@@ -18,11 +18,11 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer eventId;
     private String name, place;
-    private Integer date;
+    private Long date;
 
     public Event() {}
 
-    public Event(String name, String place, Integer date) {
+    public Event(String name, String place, Long date) {
         this.name = name;
         this.place = place;
         this.date = date;

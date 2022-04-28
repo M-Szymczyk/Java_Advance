@@ -43,7 +43,7 @@ public class EventServiceImpl implements EventService {
                         DateTimeFormatter.ofPattern("dd.MM.yyyy"));
                 calendar.set(date.getYear(), date.getMonthValue(), date.getDayOfMonth());
                 eventRepository.save(new Event(strings[0], strings[1],
-                        (int) calendar.getTimeInMillis()));
+                        calendar.getTimeInMillis()));
             });
 
         } catch (IOException ex) {
@@ -54,5 +54,15 @@ public class EventServiceImpl implements EventService {
     @Override
     public List<Event> getAll() {
         return eventRepository.findAll();
+    }
+
+    @Override
+    public void deleteAll() {
+        eventRepository.deleteAll();
+    }
+
+    @Override
+    public Event getEventByEventId(Integer eventID) {
+        return eventRepository.getEventByEventId(eventID);
     }
 }

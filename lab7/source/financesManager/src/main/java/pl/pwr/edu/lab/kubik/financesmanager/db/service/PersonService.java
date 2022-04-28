@@ -7,6 +7,12 @@ import java.util.List;
 
 public interface PersonService {
     Person addPerson(Person person);
+
     void loadCsv(File file);
+
     List<Person> getAll();
+
+    void deleteAll();
+
+    Person getByPersonId(Integer personID);
 }
