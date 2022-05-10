@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--        fx:controller="pl.pwr.edu.lab.kubik.financesmanager.gui.GuiView"-->
+
+<AnchorPane prefHeight="716.0" prefWidth="1420.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.pwr.edu.lab.kubik.financesmanager.gui.GuiController">
+    <VBox prefHeight="552.0" prefWidth="597.0" AnchorPane.leftAnchor="0.0">
+        <TableView fx:id="depositTable" prefHeight="200.0" prefWidth="197.0" VBox.vgrow="ALWAYS" />
+        <TableView fx:id="instalmentTable" prefHeight="216.0" prefWidth="368.0" VBox.vgrow="ALWAYS" />
+    </VBox>
+    <VBox prefHeight="552.0" prefWidth="423.0" AnchorPane.rightAnchor="350.0">
+        <TableView fx:id="peronTable" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+        <TableView fx:id="eventTable" prefHeight="264.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+    </VBox>
+    <VBox prefHeight="716.0" prefWidth="310.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox prefHeight="29.0" prefWidth="310.0">
+         <children>
+               <Button mnemonicParsing="false" onAction="#readPersonCsvBtnOnAction" text="read person csv" />
+            <Button mnemonicParsing="false" onAction="#deleteAllPersonBtnOnAction" text="delete all persons" />
+            <Button mnemonicParsing="false" onAction="#addPersonBtnOnAction" text="add person" />
+         </children>
+      </HBox>
+      <HBox prefHeight="30.0" prefWidth="310.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#readEventCsvBtnOnAction" text="read event csv" />
+            <Button mnemonicParsing="false" onAction="#deleteAllEventsBtnOnAction" text="delete all events" />
+            <Button mnemonicParsing="false" onAction="#addEventBtnOnAction" text="add event" />
+         </children>
+      </HBox>
+      <HBox prefHeight="33.0" prefWidth="310.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#readInstalmentCsvBtnOnAction" text="read instalment csv" />
+            <Button mnemonicParsing="false" onAction="#deleteAllInstalmentBtnOnActionBtn" text="delete all installments" />
+            <Button mnemonicParsing="false" onAction="#addInstallmentBtnOnAction" text="add installment" />
+         </children>
+      </HBox>
+      <HBox prefHeight="31.0" prefWidth="310.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#readDepositCsvBtnOnAction" text="read deposit csv" />
+            <Button mnemonicParsing="false" onAction="#deleteAllDepositBtnOnActionBtn" text="delete all deposits" />
+            <Button mnemonicParsing="false" onAction="#addDepositBtnOnAction" text="add deposit" />
+         </children>
+      </HBox>
+      <HBox prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Label fx:id="applicationDateLabel" text="Label" />
+            <Button mnemonicParsing="false" onAction="#updateDate" text="next day" />
+         </children>
+      </HBox>
+        <ListView fx:id="logsListView" prefHeight="335.0" prefWidth="189.0" />
+    </VBox>
+</AnchorPane>
