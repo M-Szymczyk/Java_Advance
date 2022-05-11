@@ -18,4 +18,6 @@ public interface EventService {
     void deleteAll();
 
     Event getEventByEventId(Integer eventID);
+
+    Integer getEventByNameAndPlaceAndDate(String name, String place, Long date);
 }

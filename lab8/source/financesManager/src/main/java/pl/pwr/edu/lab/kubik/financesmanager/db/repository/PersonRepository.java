@@ -11,4 +11,6 @@ public interface PersonRepository extends JpaRepository<Person,Integer> {
     List<Person> findByName(String name);
 
     Person getByPersonId(Integer personId);
+
+    Integer getByNameAndSurname(String name,String surname);
 }

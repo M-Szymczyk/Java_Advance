@@ -2,6 +2,7 @@ package pl.pwr.edu.lab.kubik.financesmanager.db.service;
 
 import org.springframework.stereotype.Service;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Deposit;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 
@@ -19,4 +20,9 @@ public interface DepositService {
     boolean existsByRepaymentAndAndPersonID(Instalment instalment, Person person);
 
     void deleteAll();
+    Deposit getDepositByDepositId(Integer id);
+
+    Integer getDepositByDateAndAmountAndPersonAndEventAndInstalment(Long date, Integer amount, Person person,
+                                                                    Event event, Instalment instalment);
+
 }

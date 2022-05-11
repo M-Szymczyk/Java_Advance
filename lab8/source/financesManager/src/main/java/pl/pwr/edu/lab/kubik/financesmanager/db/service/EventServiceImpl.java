@@ -65,4 +65,9 @@ public class EventServiceImpl implements EventService {
     public Event getEventByEventId(Integer eventID) {
         return eventRepository.getEventByEventId(eventID);
     }
+
+    @Override
+    public Integer getEventByNameAndPlaceAndDate(String name, String place, Long date) {
+        return eventRepository.getEventIdByNameAndPlaceAndDate(name,place,date);
+    }
 }

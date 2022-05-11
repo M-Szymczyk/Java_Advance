@@ -1,6 +1,7 @@
 package pl.pwr.edu.lab.kubik.financesmanager.db.service;
 
 import org.springframework.stereotype.Service;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 
@@ -23,4 +24,7 @@ public interface InstalmentService {
     void deleteAll();
 
     Instalment getInstallmentById(Integer integer);
+
+
+    Integer getInstalmentIdByEventAndNoInstalmentAndDateAAndAmount(Event event, int number, Long date, int amount);
 }

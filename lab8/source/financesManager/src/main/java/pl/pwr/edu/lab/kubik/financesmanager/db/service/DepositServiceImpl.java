@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Deposit;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.DepositRepository;
@@ -79,5 +80,15 @@ public class DepositServiceImpl implements DepositService {
     @Override
     public void deleteAll() {
         depositRepository.deleteAll();
+    }
+
+    @Override
+    public Deposit getDepositByDepositId(Integer id) {
+        return depositRepository.getDepositByDepositId(id);
+    }
+
+    @Override
+    public Integer getDepositByDateAndAmountAndPersonAndEventAndInstalment(Long date, Integer amount, Person person, Event event, Instalment instalment) {
+        return depositRepository.getDepositByDateAndAmountAndPersonAndEventAndInstalment(date,amount,person,event,instalment);
     }
 }

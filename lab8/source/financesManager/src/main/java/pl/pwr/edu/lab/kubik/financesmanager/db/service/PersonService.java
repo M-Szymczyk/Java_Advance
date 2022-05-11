@@ -15,4 +15,6 @@ public interface PersonService {
     void deleteAll();
 
     Person getByPersonId(Integer personID);
+
+    Integer getByNameAndSurname(String name,String surname);
 }

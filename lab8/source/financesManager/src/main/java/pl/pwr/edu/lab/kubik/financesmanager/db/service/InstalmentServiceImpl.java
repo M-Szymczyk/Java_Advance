@@ -3,6 +3,7 @@ package pl.pwr.edu.lab.kubik.financesmanager.db.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Instalment;
 import pl.pwr.edu.lab.kubik.financesmanager.db.model.Person;
 import pl.pwr.edu.lab.kubik.financesmanager.db.repository.EventRepository;
@@ -74,5 +75,11 @@ public class InstalmentServiceImpl implements InstalmentService {
     @Override
     public Instalment getInstallmentById(Integer integer) {
         return instalmentRepository.getByInstalmentId(integer);
+    }
+
+
+    @Override
+    public Integer getInstalmentIdByEventAndNoInstalmentAndDateAAndAmount(Event event, int number, Long date, int amount) {
+        return instalmentRepository.getInstalmentIdByEventAndNoInstalmentAndDateAndAmount(event,number,date,amount);
     }
 }

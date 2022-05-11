@@ -50,8 +50,15 @@ public class PersonServiceImpl implements PersonService {
         return personRepository.getByPersonId(personID);
     }
 
+    @Override
+    public Integer getByNameAndSurname(String name, String surname) {
+        return personRepository.getByNameAndSurname(name, surname);
+    }
+
     @Autowired
     public PersonServiceImpl(PersonRepository personRepository) {
         this.personRepository = personRepository;
     }
+
+
 }
