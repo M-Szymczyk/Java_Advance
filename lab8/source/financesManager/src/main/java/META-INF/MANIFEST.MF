@@ -1,3 +1,4 @@
 Manifest-Version: 1.0
-Main-Class: pl.pwr.edu.lab.kubik.financesmanager.Main
+Main-Class: pl.pwr.edu.lab.kubik.financesmanager.db.ProducingWebServiceA
+ pplication
 
