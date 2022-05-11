@@ -7,5 +7,5 @@ import pl.pwr.edu.lab.kubik.financesmanager.db.model.Event;
 @Repository
 public interface EventRepository extends JpaRepository<Event, Integer> {
     Event getEventByEventId(Integer integer);
-    Integer getEventIdByNameAndPlaceAndDate(String name, String place, Long date);
+    Event getEventByNameAndPlaceAndDate(String name, String place, Long date);
 }

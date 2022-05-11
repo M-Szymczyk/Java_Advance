@@ -86,7 +86,7 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
-                    <mainClass>pl.pwr.edu.lab.kubik.financesmanager.Main</mainClass>
+                    <mainClass>pl.pwr.edu.lab.kubik.financesmanager.db.ProducingWebServiceApplication</mainClass>
                 </configuration>
             </plugin>
             <plugin>
@@ -103,7 +103,7 @@
                 </executions>
                 <configuration>
                     <sources>
-                        <source>${project.basedir}/src/main/resources/countries.xsd</source>
+                        <source>${project.basedir}/src/main/resources/financeManagement.xsd</source>
                     </sources>
                 </configuration>
             </plugin>

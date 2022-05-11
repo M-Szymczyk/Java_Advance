@@ -1,4 +1,4 @@
-package pl.pwr.edu.lab.kubik.financesmanager.soap;
+package pl.pwr.edu.lab.kubik.financesmanager.db;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

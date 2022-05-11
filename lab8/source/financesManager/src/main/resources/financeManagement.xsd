@@ -1,0 +1,213 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="localhost"
+           targetNamespace="localhost" elementFormDefault="qualified">
+
+    <xs:element name="getEventRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getEventResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="event" type="tns:event"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setEventRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="place" type="xs:string"/>
+                <xs:element name="date" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setEventResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:element name="getPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="personID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="person" type="tns:person"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setPersonRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="name" type="xs:string"/>
+                <xs:element name="surname" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="setPersonResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="personID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getInstalmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="instalmentId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getInstalmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="instalment" type="tns:instalment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setInstalmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventID" type="xs:int"/>
+                <xs:element name="number" type="xs:int"/>
+                <xs:element name="depositTime" type="xs:string"/>
+                <xs:element name="value" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="setInstalmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="instalmentID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createInstalmentRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="eventID" type="tns:event"/>
+                <xs:element name="number" type="xs:int"/>
+                <xs:element name="depositTime" type="xs:string"/>
+                <xs:element name="value" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createInstalmentResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="instalmentId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="deposit" type="tns:deposit"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="setDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositDate" type="xs:string"/>
+                <xs:element name="eventID" type="xs:int"/>
+                <xs:element name="cashValue" type="xs:int"/>
+                <xs:element name="personID" type="xs:int"/>
+                <xs:element name="instalmentID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="setDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositId" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createDepositRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositDate" type="xs:string"/>
+                <xs:element name="eventID" type="tns:event"/>
+                <xs:element name="cashValue" type="xs:int"/>
+                <xs:element name="personID" type="tns:person"/>
+                <xs:element name="instalmentID" type="tns:instalment"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="createDepositResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="depositID" type="xs:int"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <xs:complexType name="event">
+        <xs:sequence>
+            <xs:element name="eventID" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="place" type="xs:string"/>
+            <xs:element name="date" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="person">
+        <xs:sequence>
+            <xs:element name="personID" type="xs:int"/>
+            <xs:element name="name" type="xs:string"/>
+            <xs:element name="surname" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="instalment">
+        <xs:sequence>
+            <xs:element name="instalmentID" type="xs:int"/>
+            <xs:element name="eventID" type="tns:event"/>
+            <xs:element name="number" type="xs:int"/>
+            <xs:element name="depositTime" type="xs:string"/>
+            <xs:element name="value" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="deposit">
+        <xs:sequence>
+            <xs:element name="depositID" type="xs:int"/>
+            <xs:element name="depositDate" type="xs:string"/>
+            <xs:element name="eventID" type="tns:event"/>
+            <xs:element name="cashValue" type="xs:double"/>
+            <xs:element name="personID" type="tns:person"/>
+            <xs:element name="instalmentID" type="tns:instalment"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+</xs:schema>

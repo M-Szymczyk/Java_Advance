@@ -16,5 +16,5 @@ public interface InstalmentRepository extends JpaRepository<Instalment, Integer>
 
     List<Instalment> getByDateBefore(Long date);
 
-    Integer getInstalmentIdByEventAndNoInstalmentAndDateAndAmount(Event event, int number, Long date, int amount);
+    Instalment getInstalmentByEventAndNoInstalmentAndDateAndAmount(Event event, int number, Long date, int amount);
 }

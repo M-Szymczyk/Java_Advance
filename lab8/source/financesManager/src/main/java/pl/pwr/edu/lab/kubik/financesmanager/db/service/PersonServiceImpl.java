@@ -52,7 +52,7 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Integer getByNameAndSurname(String name, String surname) {
-        return personRepository.getByNameAndSurname(name, surname);
+        return personRepository.getByNameAndSurname(name, surname).getPersonId();
     }
 
     @Autowired

@@ -80,6 +80,6 @@ public class InstalmentServiceImpl implements InstalmentService {
 
     @Override
     public Integer getInstalmentIdByEventAndNoInstalmentAndDateAAndAmount(Event event, int number, Long date, int amount) {
-        return instalmentRepository.getInstalmentIdByEventAndNoInstalmentAndDateAndAmount(event,number,date,amount);
+        return instalmentRepository.getInstalmentByEventAndNoInstalmentAndDateAndAmount(event,number,date,amount).getInstalmentId();
     }
 }

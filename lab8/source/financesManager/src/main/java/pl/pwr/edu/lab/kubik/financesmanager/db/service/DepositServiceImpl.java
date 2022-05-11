@@ -89,6 +89,6 @@ public class DepositServiceImpl implements DepositService {
 
     @Override
     public Integer getDepositByDateAndAmountAndPersonAndEventAndInstalment(Long date, Integer amount, Person person, Event event, Instalment instalment) {
-        return depositRepository.getDepositByDateAndAmountAndPersonAndEventAndInstalment(date,amount,person,event,instalment);
+        return depositRepository.getDepositByDateAndAmountAndPersonAndEventAndInstalment(date,amount,person,event,instalment).getDepositId();
     }
 }

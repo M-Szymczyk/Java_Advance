@@ -13,6 +13,6 @@ public interface DepositRepository extends JpaRepository<Deposit, Integer> {
 
     Deposit getDepositByDepositId(Integer id);
 
-    Integer getDepositByDateAndAmountAndPersonAndEventAndInstalment(Long date, Integer amount, Person person,
+    Deposit getDepositByDateAndAmountAndPersonAndEventAndInstalment(Long date, Integer amount, Person person,
                                                                     Event event, Instalment instalment);
 }
