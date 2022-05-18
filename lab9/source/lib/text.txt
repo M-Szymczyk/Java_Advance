@@ -1,5 +1,6 @@
 1. Introduction
-RSA, or in other words Rivest–Shamir–Adleman, is an asymmetric cryptographic algorithm. It differs from symmetric algorithms like DES or AES by having two keys. A public key that we can share with anyone is used to encrypt data. And a private one that we keep only for ourselves and it's used for decrypting the data
+RSA, or in other words Rivest–Shamir–Adleman, is an asymmetric cryptographic algorithm. It differs from symmetric algorithms like DES or AES by having two keys. A public key that
+we can share with anyone is used to encrypt data. And a private one that we keep only for ourselves and it's used for decrypting the data
 
 In this tutorial, we'll learn how to generate, store and use the RSA keys in Java.
 
